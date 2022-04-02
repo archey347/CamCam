@@ -1,0 +1,24 @@
+{
+    "name": "archey347/camcamserver",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Archey Barrell",
+            "email": "archey.barrell@outlook.com"
+        }
+    ],
+    "config": {
+        "vendor-dir": "app/vendor"
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.4"
+    },
+    "autoload": {
+        "files" : [
+            "app/defines.php"
+        ],
+        "psr-4": {
+            "CamCam\\": "app/system"
+        }
+    }
+}
