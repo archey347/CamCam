@@ -1,0 +1,19 @@
+Selected interface 'p2p-dev-wlp2s0'
+bssid / frequency / signal level / flags / ssid
+bc:9f:e4:ea:4b:b0	5280	-52	[WPA2-EAP+FT/EAP-CCMP][ESS]	eduroam
+9c:8c:d8:6e:41:90	5300	-66	[WPA2-EAP+FT/EAP-CCMP][ESS]	govroam
+9c:8c:d8:6e:41:92	5300	-66	[WPA2-EAP+FT/EAP-CCMP][ESS]	eduroam
+bc:9f:e4:ea:4b:a0	2437	-53	[WPA2-EAP+FT/EAP-CCMP][ESS]	eduroam
+9c:8c:d8:6e:9a:10	5200	-79	[WPA2-EAP+FT/EAP-CCMP][ESS]	eduroam
+9c:8c:d8:6e:9a:11	5200	-79	[WPA2-EAP+FT/EAP-CCMP][ESS]	govroam
+9c:8c:d8:6e:9a:20	2412	-73	[WPA2-EAP+FT/EAP-CCMP][ESS]	eduroam
+9c:8c:d8:6e:9a:21	2412	-73	[WPA2-EAP+FT/EAP-CCMP][ESS]	govroam
+9c:8c:d8:6e:41:91	5300	-66	[ESS]	WiFi Guest_
+9c:8c:d8:6e:41:93	5300	-66	[ESS]	legacy
+9c:8c:d8:6e:41:94	5300	-66	[ESS]	Setup Assistant
+9c:8c:d8:6e:9a:12	5200	-79	[ESS]	legacy
+9c:8c:d8:6e:9a:13	5200	-79	[ESS]	WiFi Guest_
+9c:8c:d8:6e:9a:14	5200	-79	[ESS]	Setup Assistant
+9c:8c:d8:6e:9a:22	2412	-73	[ESS]	legacy
+9c:8c:d8:6e:9a:23	2412	-73	[ESS]	WiFi Guest_
+9c:8c:d8:6e:9a:24	2412	-73	[ESS]	Setup Assistant

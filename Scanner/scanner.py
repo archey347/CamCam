@@ -1,6 +1,9 @@
+import os
+import subprocess
 import sys
 import getopt
 import json
+import time
 
 class Observation:
 	def __init__(self, location, stations) -> None:
@@ -11,12 +14,8 @@ def printUsage():
 	print("scanner.py -l <location> -n <network>")
 
 def scan():
-	fileContents = ""
-
-	with open("data.txt", 'r') as f:
-		fileContents = f.readlines();
-
-	return fileContents[2:]
+	os.system("wpa_cli scan")
+	return subprocess.check_output("wpa_cli scan_result")
 
 def getStations(fileContents):
 	stations = []
@@ -35,13 +34,15 @@ def getStations(fileContents):
 
 		return stations
 
-		
+def sendObservation(observation):
+	pass
 
 targetSsid = "eduroam"
-if __name__ == "__main__":
+scanDuration = 5
 
+if __name__ == "__main__":
 	try:
-		opts, args = getopt.getopt(sys.argv[1:], "hl:n:", ["location=", "network="])
+		opts, args = getopt.getopt(sys.argv[1:], "hdl:n:", ["duration=", "location=", "network="])
 	except getopt.GetoptError:
 		printUsage()
 		sys.exit(1)
@@ -54,10 +55,17 @@ if __name__ == "__main__":
 			location = arg
 		elif (opt in ("-n", "--network")):
 			targetSsid = arg
+		elif (opt in ("-d", "--duration")):
+			scanDuration = arg
 
-	scanResult = scan();
-	stations = getStations(scanResult)
+	
+	end = time.time() + scanDuration
+	while (time.time() < end):
+		scanResult = scan()
+		stations = getStations(scanResult)
 
 	if (len(stations) > 0):
 		observation = Observation(location, stations)
+
+	sendObservation(observation)
 	
