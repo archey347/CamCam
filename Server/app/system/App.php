@@ -41,11 +41,17 @@ class App
         $action = $_SERVER['REQUEST_METHOD'];
 
         if ($action == 'POST') {
-        }
+            $handler = new Handler\Post($this->db);
 
-        if ($action == 'GET') {
-        }
+            $handler->handle();
+        } elseif ($action == 'GET') {
+            $handler = new Handler\Get($this->db);
 
-        print("Hello World!");
+            $handler->handle();
+        } else {
+            print("Invalid request");
+            http_response_code(400);
+            exit;
+        }
     }
 }
