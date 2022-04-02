@@ -46,4 +46,13 @@ class DB
 
         return $result;
     }
+
+    public function escape_string($string)
+    {
+        if (!$this->db) {
+            $this->connect();
+        }
+
+        return $this->db->real_escape_string($string);
+    }
 }
