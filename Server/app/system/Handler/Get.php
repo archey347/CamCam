@@ -13,6 +13,22 @@ class Get
 
     public function handle()
     {
-        print("Get");
+        $db = $this->db;
+
+        $sql = "SELECT `data` FROM `observations`";
+
+        $result = $db->execute($sql);
+
+        $data = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $data[] = json_decode($row['data']);
+        }
+
+        header("Content-Type: application/json");
+
+        print(json_encode([
+            "data" => $data
+        ]));
     }
 }
