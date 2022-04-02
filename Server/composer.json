@@ -1,0 +1,11 @@
+{
+    "name": "archey347/camcamserver",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Archey Barrell",
+            "email": "archey.barrell@outlook.com"
+        }
+    ],
+    "require": {}
+}
