@@ -1,0 +1,25 @@
+{
+    "observations" : [            
+        [    
+            "3WN", 
+            [
+                ["23:32:32:23:23", -70],
+                ["MAC ADDRESS", "RSSI"]
+            ]
+        ],
+        [
+            "3WN", 
+            [
+                ["MAC ADDRESS", "RSSI"]
+            ]
+        ],
+        [
+            "1W 2.101", 
+            [
+                ["MAC ADDRESS", "RSSI"],
+                ["MAC ADDRESS", "RSSI"],
+                ["MAC ADDRESS", "RSSI"]
+            ]
+        ]
+    ]
+}
