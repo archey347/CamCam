@@ -10,7 +10,9 @@
     "config": {
         "vendor-dir": "app/vendor"
     },
-    "require": {},
+    "require": {
+        "vlucas/phpdotenv": "^5.4"
+    },
     "autoload": {
         "files" : [
             "app/defines.php"
