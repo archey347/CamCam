@@ -7,5 +7,16 @@
             "email": "archey.barrell@outlook.com"
         }
     ],
-    "require": {}
+    "config": {
+        "vendor-dir": "app/vendor"
+    },
+    "require": {},
+    "autoload": {
+        "files" : [
+            "app/defines.php"
+        ],
+        "psr-4": {
+            "CamCam\\": "app/system"
+        }
+    }
 }
