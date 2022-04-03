@@ -12,9 +12,9 @@
 
         <EditText
             android:id="@+id/search_bar"
-            android:layout_width="300dp"
+            android:layout_width="331dp"
             android:layout_height="match_parent"
-            android:hint="@string/search_bar_text"/>
+            android:hint="@string/search_bar_text" />
 
         <ImageView
             android:layout_width="60dp"

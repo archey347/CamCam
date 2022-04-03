@@ -26,4 +26,6 @@
         android:icon="@drawable/ic_baseline_map_24"
         android:title="@string/title_map" />
 
+  
+
 </menu>
