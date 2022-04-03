@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.camcam.R;
 import com.example.camcam.databinding.FragmentNotificationsBinding;
@@ -42,19 +44,19 @@ public class NotificationsFragment extends Fragment {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        ((Button)  root.findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() {
+        ((Button)  root.findViewById(R.id.button4)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((EditText) root.findViewById(R.id.editTextTextPersonName)).setText("");
+                ((EditText) root.findViewById(R.id.editTextTextPersonName2)).setText("");
             }
         });
 
 
-        ((Button)  root.findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
+        ((Button)  root.findViewById(R.id.button3)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                ((TextView) root.findViewById(R.id.textView)).setText("Status: LOADING");
+                ((TextView) root.findViewById(R.id.textView2)).setText("Status: LOADING");
 
                 WiFi wifi = new WiFi(getContext(), new WiFi.WiFiReciever() {
                     @Override
@@ -79,13 +81,13 @@ public class NotificationsFragment extends Fragment {
 
                         JSONObject data = new JSONObject();
 
-                        String location = ((EditText) root.findViewById(R.id.editTextTextPersonName)).getText().toString();
+                        String location = ((EditText) root.findViewById(R.id.editTextTextPersonName2)).getText().toString();
 
                         try {
                             data.put("location", location);
                             data.put("stations", stations);
                         } catch (Exception e) {
-                            ((TextView) root.findViewById(R.id.textView)).setText("JSON FAILED");
+                            ((TextView) root.findViewById(R.id.textView2)).setText("JSON FAILED");
                             return;
                         }
 
@@ -117,14 +119,14 @@ public class NotificationsFragment extends Fragment {
                             @Override
                             protected void onPostExecute(Response response) {
                                 if (response == null) {
-                                    ((TextView) root.findViewById(R.id.textView)).setText("Status: SENDING FAILED");
+                                    ((TextView) root.findViewById(R.id.textView2)).setText("Status: SENDING FAILED");
                                     return;
                                 }
 
                                 if(response.code() == 200) {
-                                    ((TextView) root.findViewById(R.id.textView)).setText("Status: DONE");
+                                    ((TextView) root.findViewById(R.id.textView2)).setText("Status: DONE");
                                 } else {
-                                    ((TextView) root.findViewById(R.id.textView)).setText("Status: NON-200");
+                                    ((TextView) root.findViewById(R.id.textView2)).setText("Status: NON-200");
                                 }
                             }
                         };
@@ -134,7 +136,7 @@ public class NotificationsFragment extends Fragment {
 
                     @Override
                     public void handleFailure() {
-                        ((TextView) root.findViewById(R.id.textView)).setText("Status: FAIL");
+                        ((TextView) root.findViewById(R.id.textView2)).setText("Status: FAIL");
                     }
                 });
 
@@ -143,6 +145,15 @@ public class NotificationsFragment extends Fragment {
         });
 
         return root;
+    }
+
+    private NavController getNavController()
+    { // See https://stackoverflow.com/questions/14287093/navigate-from-one-fragment-to-another-on-click-of-a-button
+        Fragment fragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
+        if (!(fragment instanceof NavHostFragment)) {
+            throw new IllegalStateException("Activity " + this + " does not have a NavHostFragment");
+        }
+        return ((NavHostFragment) fragment).getNavController();
     }
 
     @Override
