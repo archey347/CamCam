@@ -13,6 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.camcam.R;
+import com.example.camcam.ml.Model;
+
+import org.tensorflow.lite.DataType;
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
+
+import java.io.IOException;
 
 public class MapFragment extends Fragment {
 
@@ -25,6 +31,24 @@ public class MapFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
+//        try
+//        {
+//            Model model = Model.newInstance(getContext());
+//
+//            // Creates inputs for reference.
+//            TensorBuffer inputFeature0 = TensorBuffer.createFixedSize(new int[]{1, 454}, DataType.FLOAT32);
+//            inputFeature0.loadBuffer(byteBuffer);
+//
+//            // Runs model inference and gets result.
+//            Model.Outputs outputs = model.process(inputFeature0);
+//            TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
+//
+//            // Releases model resources if no longer used.
+//            model.close();
+//        } catch (IOException e) {
+//            // TODO Handle the exception
+//        }
+
         return inflater.inflate(R.layout.map_fragment, container, false);
     }
 
