@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,7 +81,7 @@ public class ScannerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        ((Button)  getView().findViewById(R.id.button2)).setOnClickListener(new View.OnClickListener() {
+        ((Button)  getView().findViewById(R.id.buttonClear)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ((EditText) getView().findViewById(R.id.editTextTextPersonName)).setText("");
@@ -87,11 +89,11 @@ public class ScannerFragment extends Fragment {
         });
 
 
-        ((Button)  getView().findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
+        ((Button)  getView().findViewById(R.id.buttonAdd)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                ((TextView) getView().findViewById(R.id.textView)).setText("Status: LOADING");
+                ((TextView) getView().findViewById(R.id.textStatus)).setText("Status: LOADING");
 
                 WiFi wifi = new WiFi(getContext(), new WiFi.WiFiReciever() {
                     @Override
@@ -122,7 +124,7 @@ public class ScannerFragment extends Fragment {
                             data.put("location", location);
                             data.put("stations", stations);
                         } catch (Exception e) {
-                            ((TextView) getView().findViewById(R.id.textView)).setText("JSON FAILED");
+                            ((TextView) getView().findViewById(R.id.textStatus)).setText("JSON FAILED");
                             return;
                         }
 
@@ -154,14 +156,14 @@ public class ScannerFragment extends Fragment {
                             @Override
                             protected void onPostExecute(Response response) {
                                 if (response == null) {
-                                    ((TextView) getView().findViewById(R.id.textView)).setText("Status: SENDING FAILED");
+                                    ((TextView) getView().findViewById(R.id.textStatus)).setText("Status: SENDING FAILED");
                                     return;
                                 }
 
                                 if(response.code() == 200) {
-                                    ((TextView) getView().findViewById(R.id.textView)).setText("Status: DONE");
+                                    ((TextView) getView().findViewById(R.id.textStatus)).setText("Status: DONE");
                                 } else {
-                                    ((TextView) getView().findViewById(R.id.textView)).setText("Status: NON-200");
+                                    ((TextView) getView().findViewById(R.id.textStatus)).setText("Status: NON-200");
                                 }
                             }
                         };
@@ -171,7 +173,7 @@ public class ScannerFragment extends Fragment {
 
                     @Override
                     public void handleFailure() {
-                        ((TextView) getView().findViewById(R.id.textView)).setText("Status: FAIL");
+                        ((TextView) getView().findViewById(R.id.textStatus)).setText("Status: FAIL");
                     }
                 });
 
@@ -183,5 +185,14 @@ public class ScannerFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_scanner, container, false);
+    }
+
+    private NavController getNavController()
+    { // See https://stackoverflow.com/questions/14287093/navigate-from-one-fragment-to-another-on-click-of-a-button
+        Fragment fragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
+        if (!(fragment instanceof NavHostFragment)) {
+            throw new IllegalStateException("Activity " + this + " does not have a NavHostFragment");
+        }
+        return ((NavHostFragment) fragment).getNavController();
     }
 }
