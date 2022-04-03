@@ -13,6 +13,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.camcam.R;
 import com.example.camcam.databinding.FragmentHomeBinding;
@@ -35,22 +36,29 @@ public class SearchFragment extends Fragment {
         binding = SearchFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        binding.uobCard.setOnClickListener(this::card_onClick);
+        binding.uobCard.setVisibility(View.GONE);
+
         binding.searchBar.addTextChangedListener(new TextWatcher()
         {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int start, int count, int after)
-            { return; }
+            { }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count)
-            { return; }
+            { }
 
             @Override
             public void afterTextChanged(Editable editable)
             {
                 if (editable.toString().toLowerCase().contains("bath"))
                 {
-                    // Show bath model
+                    binding.uobCard.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    binding.uobCard.setVisibility(View.GONE);
                 }
             }
         });
@@ -66,4 +74,8 @@ public class SearchFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+    public void card_onClick(View view)
+    {
+        Toast.makeText(getContext(), "You have clicked P1", Toast.LENGTH_SHORT).show();
+    }
 }
