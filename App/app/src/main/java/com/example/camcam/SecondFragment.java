@@ -13,8 +13,10 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.camcam.databinding.FragmentSecondBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
+import android.widget.Toast;
 
 public class SecondFragment extends Fragment {
 
@@ -45,10 +47,24 @@ public class SecondFragment extends Fragment {
         ((Button)  getView().findViewById(R.id.button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                ((TextView) getView().findViewById(R.id.textView)).setText("LOADING");
+
                 WiFi wifi = new WiFi(getContext(), new WiFi.WiFiReciever() {
                     @Override
                     public void handleSuccess(List<ScanResult> list) {
-                        ((TextView) getView().findViewById(R.id.textView)).setText(list.get(0).SSID);
+
+                        for(ScanResult result: list) {
+                            String text = result.SSID + " (" + result.BSSID + "=" + Integer.toString(result.level) + ")";
+
+                            Snackbar.make(getView(), text, Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+
+
+                        }
+
+
+                        ((TextView) getView().findViewById(R.id.textView)).setText("DONE");
                     }
 
                     @Override
