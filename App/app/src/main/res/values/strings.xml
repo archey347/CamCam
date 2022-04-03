@@ -94,4 +94,5 @@
     </string>
     <string name="title_map">Map</string>
     <string name="title_search">Search</string>
+    <string name="search_bar_text">Search for a campus...</string>
 </resources>
