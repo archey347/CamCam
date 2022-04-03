@@ -3,7 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_search">
+
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.example.camcam.ui.map.MapFragment"
+        android:label="@string/title_map"
+        tools:layout="@layout/map_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.example.camcam.ui.search.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/search_fragment" />
 
     <fragment
         android:id="@+id/navigation_home"
